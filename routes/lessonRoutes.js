@@ -14,6 +14,8 @@ router.route('/lessonId/:id')
     .put(lessonsController.updatelesson)
     .delete(lessonsController.deleteLesson)
 
+router.route('/lessonContent/:lessonId')
+    .get(lessonsController.getLessonContent)
 
 router.route('/levelId/:id')
     .get(verifyJWT,lessonsController.getLessonsBylevelId)
@@ -21,10 +23,10 @@ router.route('/levelId/:id')
 
 router.route('/lessonType/:type')
     .get(verifyJWT,lessonsController.getLessonsBylessonType)
+  
 
 
     
-router.route('/displayItem/:type')
-    .get(verifyJWT,lessonsController.getGradeAndName)
-
+router.route('/displayItem/:type')    
+    .get(lessonsController.getName)
 module.exports = router

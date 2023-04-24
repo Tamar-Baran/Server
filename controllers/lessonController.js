@@ -14,8 +14,32 @@ const getAllLessons = async (req, res) => {
     res.json(lesson)
 }
 
-const getGradeAndName= async  (req, res) => {
+const getName= async  (req, res) => {
+    if(req.user){
     const data=await Lesson.findAll({ attributes: ['lessonId','name'] ,where: {lessonType: req.params.type, levelId:req.user.levelId}});
+   if (!data) {
+        return res.status(400).json({ message: 'No ' })
+    }
+    res.json(data)}
+    else{
+        const data=await Lesson.findAll({ attributes: ['lessonId','name'] ,where: {lessonType: req.params.type, levelId:1}});
+        if (!data) {
+             return res.status(400).json({ message: 'No ' })
+         }
+         res.json(data)}  
+}
+
+
+const getname= async  (req, res) => {
+    
+    const data=await Lesson.findAll({ attributes: ['lessonId','name'] ,where: {lessonType: req.params.type, levelId:1}});
+   if (!data) {
+        return res.status(400).json({ message: 'No ' })
+    }
+    res.json(data)
+}
+const getLessonContent= async  (req, res) => {
+    const data=await Lesson.findOne({ attributes: ['lessonContent'] ,where: {lessonId: req.params.lessonId}});
    if (!data) {
         return res.status(400).json({ message: 'No ' })
     }
@@ -101,6 +125,7 @@ const deleteLesson = async (req, res) => {
 }
 
 module.exports = {
+    getname,
     getAllLessons,
     getLessonsById,
     getLessonsBylevelId,
@@ -108,6 +133,7 @@ module.exports = {
     createLesson,
     updatelesson,
     deleteLesson,
-    getGradeAndName,
-    getLessonsBylessonType
+    getName,
+    getLessonsBylessonType,
+    getLessonContent,
 }
