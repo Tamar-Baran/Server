@@ -11,8 +11,8 @@ router.route('/')
 
 router.route('/lessonId/:id')
     .get(lessonsController.getLessonsById)
-    .put(lessonsController.updatelesson)
-    .delete(lessonsController.deleteLesson)
+    .put(verifyJWT,lessonsController.updatelesson)
+    .delete(verifyJWT,lessonsController.deleteLesson)
 
 router.route('/lessonContent/:lessonId')
     .get(lessonsController.getLessonContent)

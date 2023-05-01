@@ -16,22 +16,24 @@ const getAllAchievements = async (req, res) => {
     res.json(achievements)
 }
 
-const getAllGrades=async(req,res)=>{
-    const grades = await Achievements.findAll({ where: { userId:req.user.userId }});
+const getAllGrades = async (req, res) => {
+    const grades = await Achievements.findAll({ where: { userId: req.user.userId } });
     res.json(grades)
 
 }
 
-const getGradeByLessonId=async(req,res)=>{
-    const grade=await Achievements.findOne( {attributes: ['grade'] ,where: {lessonId: req.params.lessonId, userId:req.user.userId}});
-    if(!grade)
-    return res.json({ grade:0 })
-console.log(grade);
+const getGradeByLessonId = async (req, res) => {
+    const grade = await Achievements.findOne({ attributes: ['grade'], where: { lessonId: req.params.lessonId, userId: req.user.userId } });
+    if (!grade)
+        return res.json({ grade: 0 })
+    console.log(grade);
     res.json(grade);
 }
 
 
 
 module.exports = {
-    getAllAchievements,getAllGrades,getGradeByLessonId
+    getAllAchievements,
+    getAllGrades,
+    getGradeByLessonId,
 }

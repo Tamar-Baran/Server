@@ -9,7 +9,7 @@ router.post('/login', userController.login)
 
 router.route('/wordsList')
     .get(verifyJWT,userController.getWordsList)
-    .put(verifyJWT,userController.addword)
+    .post(verifyJWT,userController.addword)
 router.route('/level')
     .get(verifyJWT,userController.getMyLevel)
 

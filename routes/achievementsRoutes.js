@@ -13,5 +13,4 @@ router.route('/grades/:lessonId')
     .get(verifyJWT,achievementsController.getGradeByLessonId)
 
 
-
 module.exports = router
