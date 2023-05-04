@@ -81,10 +81,11 @@ const getWordsList = async (req, res) => {
 
 const addword = async (req, res) => {    
     const foundUser = await User.findOne({where: { userId:req.user.userId }});
-    if (!foundUser?.length) {
+    if (!foundUser) {
         return res.status(400).json({ message: 'No User found' })
     }
-
+    console.log(req.body)
+   
        await foundUser.update({
          wordsList: {...foundUser.wordsList, ...req.body },
        });

@@ -8,7 +8,9 @@ router.route('/')
 
 router.route('/grades')
     .get(verifyJWT,achievementsController.getAllGrades)
-    
+router.route('/graph')
+    .get(verifyJWT,achievementsController.getGradeAndDate)
+     
 router.route('/grades/:lessonId')
     .get(verifyJWT,achievementsController.getGradeByLessonId)
 
