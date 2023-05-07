@@ -99,11 +99,23 @@ let str=`{"${wordEng}":"${wordHeb}"}`;
     res.send("success")
 }
 const deleteWord=async(req,res)=>{
-    const foundUser = await User.findOne({where: { userId:req.user.userId }});
+    const foundUser = await User.findOne({ where: { userId: req.user.userId } });
     if (!foundUser) {
-        return res.status(400).json({ message: 'No User found' })
+      return res.status(400).json({ message: 'No User found' });
     }
-    console.log("I am deleting")
+    
+    const wordToDelete = req.body.wordEnglish;
+    console.log(wordToDelete);
+    console.log(foundUser,"found user")
+    // Use the delete operator to remove the property from the object
+    delete foundUser.wordsList[wordToDelete];
+    
+    await foundUser.save();
+    console.log("I am deleting");
+    res.send("success");
+    
+    
+
 }
 const getMyLevel=async(req,res)=>{
     const foundUser = await User.findOne({where: { userId:req.user.userId }});
