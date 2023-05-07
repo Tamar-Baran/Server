@@ -10,6 +10,7 @@ router.post('/login', userController.login)
 router.route('/wordsList')
     .get(verifyJWT,userController.getWordsList)
     .post(verifyJWT,userController.addword)
+    .delete(verifyJWT,userController.deleteWord)
 router.route('/level')
     .get(verifyJWT,userController.getMyLevel)
 

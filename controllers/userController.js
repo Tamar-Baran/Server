@@ -85,11 +85,25 @@ const addword = async (req, res) => {
         return res.status(400).json({ message: 'No User found' })
     }
     console.log(req.body)
-   
+   let wordEng=req.body.wordEnglish;
+    let wordHeb=req.body.wordHebrew;
+
+   console.log(wordEng);
+   console.log(wordHeb);
+let str=`{"${wordEng}":"${wordHeb}"}`;
+ let son=JSON.parse(str)
+ console.log(son)
        await foundUser.update({
-         wordsList: {...foundUser.wordsList, ...req.body },
+        wordsList: {...foundUser.wordsList, ...son},
        });
     res.send("success")
+}
+const deleteWord=async(req,res)=>{
+    const foundUser = await User.findOne({where: { userId:req.user.userId }});
+    if (!foundUser) {
+        return res.status(400).json({ message: 'No User found' })
+    }
+    console.log("I am deleting")
 }
 const getMyLevel=async(req,res)=>{
     const foundUser = await User.findOne({where: { userId:req.user.userId }});
@@ -100,6 +114,7 @@ const getMyLevel=async(req,res)=>{
 }
 
 module.exports = {  login, 
+                    deleteWord,
                     register ,
                     getWordsList,
                     addword,
