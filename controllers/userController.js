@@ -108,8 +108,13 @@ const deleteWord=async(req,res)=>{
     console.log(wordToDelete);
     console.log(foundUser,"found user")
     // Use the delete operator to remove the property from the object
-    delete foundUser.wordsList[wordToDelete];
-    
+    const newS = {...foundUser.wordsList} 
+    console.log("newS", newS)
+    console.log("wordToDelete", wordToDelete)
+    //delete foundUser.wordsList[wordToDelete];
+    const newS2 = delete newS[wordToDelete]
+    console.log("newS2", newS2)
+    console.log("newS", newS)
     await foundUser.save();
     console.log("I am deleting");
     res.send("success");

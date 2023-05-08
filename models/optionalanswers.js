@@ -17,7 +17,11 @@ const { sequelize, DataTypes } = require("./sequelize");
             type: DataTypes.STRING,
             allowNull: true,
         },
-        
+        isCorrect:{
+          type: DataTypes.BOOLEAN,
+          allowNull:false,
+        }
+        ,
     },
     {
       timestamps: false,

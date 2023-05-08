@@ -17,7 +17,7 @@ const getAllquestions = async (req, res) => {
 
 const getQuestionsByLessonId= async (req, res) => {
     const questionById=await Optionalanswers.findAll({
-        attributes:["optionalAnswerId","questionId","answerText"],
+        attributes:["optionalAnswerId","questionId","answerText","isCorrect"],
         include:[{model:Question,as:'question_Id',where: { lessonId: parseInt(req.params.id) }}],
          /*where: { lessonId: parseInt(req.params.id) } */
         //where:{questionId:}
