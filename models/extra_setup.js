@@ -1,12 +1,11 @@
 const { sequelize } = require("./sequelize");
 const applyExtraSetup = () => {
     const { achievements, lesson, level,optionalanswers, question,stoppoint,useranswer,user } = sequelize.models;
-    lesson.belongsTo(level, { foreignKey: "levelId", as: "level_Id" });
-    lesson.belongsTo(achievements, { foreignKey: "lessonId", as: "lessonId_grade" });
+  lesson.belongsTo(level, { foreignKey: "levelId", as: "level_Id" });
 
     question.belongsTo(lesson, { foreignKey: "lessonId", as: "lesson_Id" });
     achievements.belongsTo(user, { foreignKey: "userId", as: "user_Id" });
-    achievements.belongsTo(lesson, { foreignKey: "lessonId", as: "lesson_Id" });
+    //achievements.belongsTo(lesson, { foreignKey: "lessonId", as: "lesson_Id" });
     stoppoint.belongsTo(lesson, { foreignKey: "lessonId", as: "lesson_Id" });
     stoppoint.belongsTo(user, { foreignKey: "userId", as: "user_Id" });
     optionalanswers.belongsTo(question, { foreignKey: "questionId", as: "question_Id" });
@@ -14,6 +13,7 @@ const applyExtraSetup = () => {
     useranswer.belongsTo(user, { foreignKey: "userId", as: "user_Id" });
     user.belongsTo(level, { foreignKey: "levelId", as: "level_Id" });
     stoppoint.belongsTo(question, { foreignKey: "questionId", as: "question_Id" });
+   lesson.belongsTo(achievements, { foreignKey: "lessonId", as: "lessonId_grade" });
 
 };
 
