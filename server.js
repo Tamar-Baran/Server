@@ -25,8 +25,6 @@ app.use("/api/stoppoint", require("./routes/stoppointRoutes"));
 app.use("/api/achievements", require("./routes/achievementsRoutes"));
 app.use("/api/user", require("./routes/userRoutes"));
 
-//app.use("/api/login", require("./routes/loginRoutes"));
-//app.use("/api/user", require("./routes/userRoutes"));
 app.listen(PORT, () => {
     console.log("app ruuning");
 }); 

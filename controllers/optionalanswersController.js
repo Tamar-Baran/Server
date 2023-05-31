@@ -14,5 +14,5 @@ const getAllOptionalanswers = async (req, res) => {
     res.json(optionalanswers)
 }
 module.exports = {
-    getAllOptionalanswers,
+    getAllOptionalanswers
 }

@@ -2,6 +2,8 @@ const { sequelize } = require("./sequelize");
 const applyExtraSetup = () => {
     const { achievements, lesson, level,optionalanswers, question,stoppoint,useranswer,user } = sequelize.models;
     lesson.belongsTo(level, { foreignKey: "levelId", as: "level_Id" });
+    lesson.belongsTo(achievements, { foreignKey: "lessonId", as: "lessonId_grade" });
+
     question.belongsTo(lesson, { foreignKey: "lessonId", as: "lesson_Id" });
     achievements.belongsTo(user, { foreignKey: "userId", as: "user_Id" });
     achievements.belongsTo(lesson, { foreignKey: "lessonId", as: "lesson_Id" });

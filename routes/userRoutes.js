@@ -13,5 +13,6 @@ router.route('/wordsList')
     .delete(verifyJWT,userController.deleteWord)
 router.route('/level')
     .get(verifyJWT,userController.getMyLevel)
+    
 
 module.exports = router

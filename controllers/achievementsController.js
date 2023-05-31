@@ -1,4 +1,4 @@
-const { achievements } = require('../models/index')
+const { achievements, lesson } = require('../models/index')
 const db = require('../models/index')
 const Achievements = db.achievements
 
@@ -36,11 +36,25 @@ const getGradeByLessonId = async (req, res) => {
     res.json(grade);
 }
 
+const getTest =async  (req, res) => {
+  
+    const questionById=await lesson.findAll({
+        attributes:["name","lessonType",],
+        include:[{model:Achievements,as:'lessonId_grade',attributes: ['grade'],where:  { userId: req.user.userId } }],
+        });
+    if (!questionById) {
+        return res.status(400).json({ message: 'No ' })
+    }
+
+    res.json(questionById)
+
+}
 
 
 module.exports = {
     getAllAchievements,
     getAllGrades,
     getGradeByLessonId,
-    getGradeAndDate
+    getGradeAndDate,
+    getTest
 }

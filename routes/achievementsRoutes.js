@@ -5,7 +5,8 @@ const verifyJWT = require('../middleware/verifyJWT')
 
 router.route('/')
     .get(achievementsController.getAllAchievements)
-
+router.route('/test')
+    .get(verifyJWT,achievementsController.getTest)
 router.route('/grades')
     .get(verifyJWT,achievementsController.getAllGrades)
 router.route('/graph')
